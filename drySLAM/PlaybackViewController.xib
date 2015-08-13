@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaybackViewController">
+            <connections>
+                <outlet property="backButton" destination="q6q-6A-5aE" id="ZFS-44-JYm"/>
+                <outlet property="graphicsWindow" destination="gn4-zB-lS1" id="WPR-XK-CW5"/>
+                <outlet property="mpvcView" destination="64O-33-5N0" id="8Tl-dR-604"/>
+                <outlet property="tableView" destination="bgF-ix-NjW" id="xRp-ni-zso"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6q-6A-5aE">
+                    <rect key="frame" x="8" y="8" width="57" height="30"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="Back">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="8X7-O7-DUP"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bgF-ix-NjW">
+                    <rect key="frame" x="172" y="228" width="322" height="133"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="159" y="297" width="348" height="70"/>
+                    </variation>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Sg5-l8-7SH"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64O-33-5N0">
+                    <rect key="frame" x="8" y="42" width="314" height="175"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="8" y="91" width="317" height="176"/>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gn4-zB-lS1">
+                    <rect key="frame" x="8" y="42" width="314" height="175"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="333" y="91" width="317" height="176"/>
+                    </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="KKe-fK-YLG" appends="YES" id="zc2-sG-BYC"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.78446575129999996" green="0.32987574269999997" blue="0.0058741981300000001" alpha="1" colorSpace="calibratedRGB"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="gn4-zB-lS1"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact">
+                <mask key="subviews">
+                    <include reference="gn4-zB-lS1"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="557.5" y="397.5"/>
+        </view>
+        <glkViewController preferredFramesPerSecond="30" id="KdY-dE-01c">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="Tjc-PD-0UM"/>
+                <viewControllerLayoutGuide type="bottom" id="krd-iN-gAt"/>
+            </layoutGuides>
+            <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="48y-gr-bmf">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <connections>
+                    <outlet property="delegate" destination="KdY-dE-01c" id="wFb-2L-mk4"/>
+                </connections>
+            </glkView>
+            <point key="canvasLocation" x="1246" y="398"/>
+        </glkViewController>
+        <tapGestureRecognizer id="KKe-fK-YLG">
+            <connections>
+                <action selector="graphicsContextPressed:" destination="-1" id="gIa-39-7tE"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

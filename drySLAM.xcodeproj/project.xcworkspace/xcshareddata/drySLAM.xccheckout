@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4561B677-CA92-4220-942F-CB99F26D99C2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>drySLAM</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>e8e808b8-a417-46c6-94ba-418a53083474++444</key>
+		<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S/trunk/dryslam</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>trunk/mainProject/drySLAM/drySLAM.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>e8e808b8-a417-46c6-94ba-418a53083474++444</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>e8e808b8-a417-46c6-94ba-418a53083474++444</key>
+		<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S/trunk/dryslam/trunk/mainProject/drySLAM/drySLAM.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>e8e808b8-a417-46c6-94ba-418a53083474++444</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>e8e808b8-a417-46c6-94ba-418a53083474++444</string>
+			<key>IDESourceControlWCCName</key>
+			<string>dryslam</string>
+		</dict>
+	</array>
+</dict>
+</plist>
