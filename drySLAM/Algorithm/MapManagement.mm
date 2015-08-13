@@ -7,13 +7,13 @@
 //
 
 #include "MapManagement.hpp"
-#include "SearchICMatches.hpp"
 #include <stdlib.h>
 #include <math.h>
-//#include <stdio>
 #include <vector>
 
-//Main function:
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 bool map_management(cv::Mat* im, Filter* filter, Camera* cam, NSMutableArray* features_info, int minNumberOfFeaturesInImage, int step)
 {
     int i;
@@ -41,10 +41,57 @@ bool map_management(cv::Mat* im, Filter* filter, Camera* cam, NSMutableArray* fe
     
     return true;
 }
-
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+bool deleteFeatures(NSMutableArray* features_info, Filter* filter)
+{
+    int i,j;
+    
+    if (features_info==NULL||filter==NULL)
+    {
+        return false;
+    }
+    
+    NSMutableArray *deletionList=[[NSMutableArray alloc] init];
+    
+    for(i=0; i<(int)[features_info count]; i++)
+    {
+        Feature *current=features_info[i];
+        
+        if ((current->times_measured<0.5*(current->times_predicted))&&
+            (current->times_predicted>5))
+        {
+            [deletionList addObject:[NSNumber numberWithInt:i]];
+        }
+    }
+    
+    if ([deletionList count])
+    {
+        for (j=(int)[deletionList count]-1;j>=0;j--)
+        {
+            cv::Mat x_k_k_new;
+            cv::Mat p_k_k_new;
+            
+            deleteOneFeature(features_info,filter,[[deletionList objectAtIndex:j] intValue]);
+            
+            if ([[deletionList objectAtIndex:j] intValue]==0)
+                [features_info removeObjectAtIndex:0];
+            
+            if ([[deletionList objectAtIndex:j] intValue]==[features_info count])
+                [features_info removeObjectAtIndex:[features_info count]-1];
+            
+            if (([[deletionList objectAtIndex:j] intValue]!=[features_info count])&&
+                ([[deletionList objectAtIndex:j] intValue]!=0))
+                [features_info removeObjectAtIndex:[[deletionList objectAtIndex:j] intValue]];
+            //filter->state_size -= 6;
+        }
+        
+    }
+    
+    return true;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
 bool deleteOneFeature(NSMutableArray* features_info,Filter* filter,int featToDelete)
 {
     Feature *last = features_info[featToDelete-1];
@@ -114,64 +161,9 @@ bool deleteOneFeature(NSMutableArray* features_info,Filter* filter,int featToDel
     
     return true;
 }
-
-bool deleteFeatures(NSMutableArray* features_info, Filter* filter)
-{
-    int i,j;
-    
-    if (features_info==NULL||filter==NULL)
-    {
-        return false;
-    }
-    
-    NSMutableArray *deletionList=[[NSMutableArray alloc] init];
-    
-    for(i=0; i<(int)[features_info count]; i++)
-    {
-        Feature *current=features_info[i];
-        
-        if ((current->times_measured<0.5*(current->times_predicted))&&
-            (current->times_predicted>5))
-        {
-            [deletionList addObject:[NSNumber numberWithInt:i]];
-        }
-    }
-    
-    if ([deletionList count])
-    {
-        for (j=(int)[deletionList count]-1;j>=0;j--)
-        {
-            cv::Mat x_k_k_new;
-            cv::Mat p_k_k_new;
-            
-            deleteOneFeature(features_info,filter,[[deletionList objectAtIndex:j] intValue]);
-            
-            if ([[deletionList objectAtIndex:j] intValue]==0)
-                [features_info removeObjectAtIndex:0];
-            
-            if ([[deletionList objectAtIndex:j] intValue]==[features_info count])
-                [features_info removeObjectAtIndex:[features_info count]-1];
-            
-            if (([[deletionList objectAtIndex:j] intValue]!=[features_info count])&&
-                ([[deletionList objectAtIndex:j] intValue]!=0))
-                [features_info removeObjectAtIndex:[[deletionList objectAtIndex:j] intValue]];
-            //filter->state_size -= 6;
-        }
-        
-    }
-    
-    return true;
-}
-
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-
-
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 bool updateFeaturesInfo(NSMutableArray* features_info)
 {
     int i;
@@ -196,10 +188,9 @@ bool updateFeaturesInfo(NSMutableArray* features_info)
     
     return true;
 }
-
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 void m(double theta, double phi, cv::Mat *m)
 {
     m->at<double>(0,0) = cos(phi) * sin(theta);
@@ -225,7 +216,7 @@ bool inversedepth_2_cartesian(NSMutableArray* features_info, Filter* filter)
             {
                 if ([current->type isEqualToString:@"cartesian"])
                     initialPositionOfFeature += 3;
-
+                
                 if ([current->type isEqualToString:@"inversedepth"])
                     initialPositionOfFeature += 6;
             }
@@ -251,7 +242,7 @@ bool inversedepth_2_cartesian(NSMutableArray* features_info, Filter* filter)
         double *p0 = (double *)malloc(1*6*sizeof(double));
         for (i=0; i<5; i++)
             p0[i] = filter->x_k_k[initialPositionOfFeature+(i-1)];
-
+        
         double *ct = (double *)malloc(1*3*sizeof(double));
         inverseDepth2Cartesian(p0, ct);
         
@@ -263,7 +254,7 @@ bool inversedepth_2_cartesian(NSMutableArray* features_info, Filter* filter)
                             (ct[2]-x_c1[2])*(ct[2]-x_c2[2]))/(sum1*sum2);
         
         double linearity_index = 4*std_d*cos_alpha/d_c2p;
-
+        
         if (linearity_index < linearity_index_threshold)
         {
             int size = filter->state_size;
@@ -287,8 +278,8 @@ bool inversedepth_2_cartesian(NSMutableArray* features_info, Filter* filter)
             dm_dphi[2] = -sin(phi)*cos(theta);
             
             double J[3][6] = {{1,0,0,1/rho*dm_dtheta[0],1/rho*dm_dphi[0],-mi->at<double>(0,0)/pow(rho, 2)},
-                              {0,1,0,1/rho*dm_dtheta[1],1/rho*dm_dphi[1],-mi->at<double>(1,0)/pow(rho, 2)},
-                              {0,0,1,1/rho*dm_dtheta[2],1/rho*dm_dphi[2],-mi->at<double>(2,0)/pow(rho, 2)}};
+                {0,1,0,1/rho*dm_dtheta[1],1/rho*dm_dphi[1],-mi->at<double>(1,0)/pow(rho, 2)},
+                {0,0,1,1/rho*dm_dtheta[2],1/rho*dm_dphi[2],-mi->at<double>(2,0)/pow(rho, 2)}};
             
             double *J_all = (double *)malloc((size-3)*size*sizeof(double));
             for (i=0; i<initialPositionOfFeature-1; i++)
@@ -331,11 +322,34 @@ bool inversedepth_2_cartesian(NSMutableArray* features_info, Filter* filter)
     
     return true;
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
+bool inverseDepth2Cartesian(double* inverse_depth, double* cartesian)
+{
+    double *rw = (double *)malloc(1*3*sizeof(double));
+    rw[0] = *(inverse_depth+0);
+    rw[1] = *(inverse_depth+1);
+    rw[2] = *(inverse_depth+2);
+    
+    double theta = *(inverse_depth+3);
+    double phi = *(inverse_depth+4);
+    double rho = *(inverse_depth+5);
+    
+    double *m = (double *)malloc(1*3*sizeof(double));
+    m[0] = cos(phi)*sin(theta);
+    m[1] = (-1)*sin(phi);
+    m[2] = cos(phi)*cos(theta);
+    
+    cartesian[0] = rw[0] + 1/rho*m[0];
+    cartesian[1] = rw[1] + 1/rho*m[1];
+    cartesian[2] = rw[2] + 1/rho*m[2];
+    
+    return true;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 bool initialize_features(int step, Camera* cam, Filter* filter, NSMutableArray* features_info, int numFeaturesToInitialize, cv::Mat* im)
 {
     int max_attempts = 50;
@@ -357,12 +371,7 @@ bool initialize_features(int step, Camera* cam, Filter* filter, NSMutableArray* 
     
     return true;
 }
-
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-/***************************************************************************************************************************************/
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 bool initialize_a_feature(Filter* filter, NSMutableArray* features_info, int step, Camera* cam, cv::Mat* im_k, NSMutableArray* uv)
 {
     

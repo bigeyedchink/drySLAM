@@ -10,27 +10,33 @@
 	<string>drySLAM</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>CEAD40E56502150BFF53838F54C273D3086F1C20</key>
+		<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S/https://github.com/bigeyedchink/drySLAM.git</string>
 		<key>e8e808b8-a417-46c6-94ba-418a53083474++444</key>
 		<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S/trunk/dryslam</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>trunk/mainProject/drySLAM/drySLAM.xcodeproj</string>
+	<string>drySLAM.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>CEAD40E56502150BFF53838F54C273D3086F1C20</key>
+		<string>../..</string>
 		<key>e8e808b8-a417-46c6-94ba-418a53083474++444</key>
-		<string>../../../../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
+		<key>CEAD40E56502150BFF53838F54C273D3086F1C20</key>
+		<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S</string>
 		<key>e8e808b8-a417-46c6-94ba-418a53083474++444</key>
 		<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S/trunk/dryslam/trunk/mainProject/drySLAM/drySLAM.xcodeproj</string>
+	<string>https://svn.engr.arizona.edu/svn/jms/ece473-573-2015S</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>e8e808b8-a417-46c6-94ba-418a53083474++444</string>
+	<string>CEAD40E56502150BFF53838F54C273D3086F1C20</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -39,7 +45,23 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>e8e808b8-a417-46c6-94ba-418a53083474++444</string>
 			<key>IDESourceControlWCCName</key>
-			<string>dryslam</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CEAD40E56502150BFF53838F54C273D3086F1C20</string>
+			<key>IDESourceControlWCCName</key>
+			<string>drySLAM</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CEAD40E56502150BFF53838F54C273D3086F1C20</string>
+			<key>IDESourceControlWCCName</key>
+			<string>drySLAM</string>
 		</dict>
 	</array>
 </dict>

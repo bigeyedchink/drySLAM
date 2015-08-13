@@ -736,7 +736,7 @@ bool dh_dy(double* Hi_features, Camera* cam, double* Xv_km1_k, double* yi, doubl
 /***************************************************************************************************************************************/
 /***************************************************************************************************************************************/
 
-
+/*
 bool inverseDepth2Cartesian(double* inverse_depth, double* cartesian)
 {
     double *rw = (double *)malloc(1*3*sizeof(double));
@@ -759,7 +759,7 @@ bool inverseDepth2Cartesian(double* inverse_depth, double* cartesian)
         
     return true;
 }
-
+*/
 /***************************************************************************************************************************************/
 /***************************************************************************************************************************************/
 /***************************************************************************************************************************************/
@@ -1521,6 +1521,7 @@ bool matching(cv::Mat* im, NSMutableArray* features_info, Camera* cam){
                         *A = (*nu_transpose)*(*invS)*(*nu);
                         nu->release();
                         nu_transpose->release();
+                        /*
                         if (A->at<double>(0,0) < chi_095_2){
                             //NSLog(@"img at coordinate %d,%d satisfies chi2 constraint", j,k);
                             if ((j>half_patch_size_when_matching) && (j<(cam->nCols-half_patch_size_when_matching-1)) &&
@@ -1540,15 +1541,13 @@ bool matching(cv::Mat* im, NSMutableArray* features_info, Camera* cam){
                                 }
                                 patches_for_correlation.push_back(new cv::Mat(rowsInPatch, colsInPatch, CV_8UC1, image_patch, cv::Mat::AUTO_STEP));
                                 free(image_patch);
-                                //match_candidates[index_patches_for_correlation] = k;
-                                //match_candidates[index_patches_for_correlation+(patchYSize*patchXSize+1)] = i;
-                                patchRowCoordinates.push_back(k);
-                                patchColCoordinates.push_back(j);
                                 
-                               // match_candidates->at<int>(0,index_patches_for_correlation-2) = j;
-                               // match_candidates->at<int>(1,index_patches_for_correlation-2) = k;
+                                
+                              
+                                
                             }
                         }
+                        */
                         //else{
                         //    NSLog(@"img at coordinate %d,%d does not satisfy chi2 constraint", j,k);
                         //}
